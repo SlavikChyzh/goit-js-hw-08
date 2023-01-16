@@ -1,37 +1,36 @@
 import { save, load } from './localStorage';
 import throttle from 'lodash.throttle';
 
-const localStorageKey = 'feedback-form-state';
-let storeData = {
-  messageStore: '',
-  mailStore: '',
-};
-const form = document.getElementsByClassName('feedback-form');
+const form = document.querySelector('.feedback-form');
 const email = document.getElementById('email');
 const message = document.getElementById('message');
-const submitBtn = document.querySelector('button');
+const submitBtn = document.getElementById('submit');
 
-message.textContent = load(localStorageKey).messageStore;
-email.value = load(localStorageKey).mailStore;
+const localStorageKey = 'feedback-form-state';
+let storeData = load(localStorageKey) || { message: '', mail: '' };
 
-message.addEventListener('input', event => {
-  //console.log(email.textContent);
-  console.log(event.currentTarget.value);
-  storeData.messageStore = event.currentTarget.value;
-  save(localStorageKey, storeData);
+message.value = storeData.message;
+email.value = storeData.mail;
+
+message.addEventListener(
+  'input',
+  throttle(event => {
+    storeData.message = event.currentTarget.value;
+    save(localStorageKey, storeData);
+  }),
+  500
+);
+email.addEventListener(
+  'input',
+  throttle(event => {
+    storeData.mail = event.currentTarget.value;
+    save(localStorageKey, storeData);
+  }),
+  500
+);
+
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  console.log(`email:${storeData.mail}, message:${storeData.message}`);
+  localStorage.removeItem(localStorageKey);
 });
-email.addEventListener('input', event => {
-  //console.log(email.textContent);
-  console.log(event.currentTarget.value);
-  storeData.mailStore = event.currentTarget.value;
-  save(localStorageKey, storeData);
-});
-
-// message.addEventListener('input', event => {
-//   save(localStorageKey, {
-//     emailStorage: email.values,
-//     messageStorage: message.values,
-//   });
-//   console.log(email.values);
-//   console.log(message.values);
-// });
