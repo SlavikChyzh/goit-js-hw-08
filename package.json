@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /parcel-project-template/"
+    "start": "parcel src/index.html"
   },
   "keywords": [],
   "dependencies": {
