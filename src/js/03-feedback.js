@@ -33,4 +33,6 @@ form.addEventListener('submit', event => {
   event.preventDefault();
   console.log(`email:${storeData.mail}, message:${storeData.message}`);
   localStorage.removeItem(localStorageKey);
+  message.value = '';
+  email.value = '';
 });
