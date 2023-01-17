@@ -1,19 +1,9 @@
 {
   "name": "goit-js-hw-08",
-  "version": "",
-  "description": "",
   "homepage": "https://slavikchyzh.github.io/goit-js-hw-08/",
   "scripts": {
-    "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-08/"
+    "start": "parcel src/*.html"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SlavikChyzh/goit-js-hw-08.git"
-  },
-  "keywords": [],
-  "author": "",
-  "bugs": {},
   "dependencies": {
     "@vimeo/player": "^2.18.0",
     "lodash.throttle": "^4.1.1",
